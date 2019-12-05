@@ -1,13 +1,36 @@
 # Vue guide
 
-`v-for` usage.
+<style>
+  .main {
+    color: #2c3e50;
+  }
+  .text {
+    color: #4fc08d;
+  }
+</style>
 
-```html
-<ul>
-  <li v-for="i in 10">{{ i }}</li>
-</ul>
-```
+<template>
+  <div class="main">
+    <h2> Hello <span class="text">{{ name }}</span>!</h2>
+    <h2>Features</h2>
+    <ul>
+      <li v-for="text in features">{{ text }}</li>
+    </ul>
+  </div>
+</template>
 
-<ul>
-  <li v-for="i in 10">{{ i }}</li>
-</ul>
+<script>
+  module.exports = {
+    data () {
+      return {
+        name: 'Vuep',
+        features: [
+          'Single File Component',
+          'Babel for ES6/JSX/UMD/CommonJS',
+          'Scoped style',
+          'Customizable JavaScript scope'
+        ]
+      }
+    }
+  }
+</script>

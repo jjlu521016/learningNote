@@ -1,13 +1,17 @@
-# Vue guide
+# Vuep
 
-`v-for` usage.
+<vuep template="#example"></vuep>
 
-```html
-<ul>
-  <li v-for="i in 10">{{ i }}</li>
-</ul>
-```
+<script v-pre type="text/x-template" id="example">
+  <template>
+    <div>Hello, {{ name }}!</div>
+  </template>
 
-<ul>
-  <li v-for="i in 10">{{ i }}</li>
-</ul>
+  <script>
+    module.exports = {
+      data: function () {
+        return { name: 'Vue' }
+      }
+    }
+  </script>
+</script>
