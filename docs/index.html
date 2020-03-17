@@ -12,10 +12,14 @@
     <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
     <link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css" />
     <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css" />
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
-    <link href="https://cdn.bootcss.com/KaTeX/0.10.0/katex.min.css" rel="stylesheet">
-    
-
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css"
+    />
+    <link
+      href="https://cdn.bootcss.com/KaTeX/0.10.0/katex.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="app"></div>
@@ -25,9 +29,9 @@
     <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
     <script src="https://cdn.bootcss.com/KaTeX/0.10.0/katex.min.js"></script>
     <!-- markmap is based on d3, so must load those files first. -->
-    <script src="//unpkg.com/d3@3/d3.min.js"></script> 
-    <script src="//unpkg.com/markmap@0.6.0/lib/d3-flextree.js"></script> 
-    <script src="//unpkg.com/markmap@0.6.0/lib/view.mindmap.js"></script> 
+    <script src="//unpkg.com/d3@3/d3.min.js"></script>
+    <script src="//unpkg.com/markmap@0.6.0/lib/d3-flextree.js"></script>
+    <script src="//unpkg.com/markmap@0.6.0/lib/view.mindmap.js"></script>
     <script>
       window.$docsify = {
         name: "jasonLu的博客",
@@ -35,27 +39,27 @@
         loadNavbar: true,
         loadSidebar: true,
         coverpage: true,
-        subMaxLevel: 3,
+        subMaxLevel: 1,
         auto2top: true,
         autoHeader: true,
         mergeNavbar: true,
         search: "auto",
-        formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}',
+        formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
         plantuml: {
-          skin: 'default',
+          skin: "default"
         },
         mindmap: {
-          preset: 'colorful', // or default
-          linkShape: 'diagonal' // or bracket
+          preset: "colorful", // or default
+          linkShape: "diagonal" // or bracket
         },
-        
+
         plugins: [
           function(hook, vm) {
-            hook.ready(function () {
-              mermaid.initialize({startOnLoad: false});
+            hook.ready(function() {
+              mermaid.initialize({ startOnLoad: false });
             });
-            hook.doneEach(function () {
-              mermaid.init(undefined,'.mermaid');
+            hook.doneEach(function() {
+              mermaid.init(undefined, ".mermaid");
             });
           }
         ],
@@ -63,31 +67,49 @@
           renderer: {
             code: function(code, lang) {
               if (lang === "tex") {
-                  return (
-                  '<span class="tex">'+ katex.renderToString(code, {
-                      throwOnError: false
-                  })+'</span>'
-                  );
+                return (
+                  '<span class="tex">' +
+                  katex.renderToString(code, {
+                    throwOnError: false
+                  }) +
+                  "</span>"
+                );
               }
 
-              var html = '';
-              if(code.match(/^sequenceDiagram/) || code.match(/^graph/) || code.match(/^gantt/)){
-                html = '<div class="mermaid">' + code + '</div>';
+              var html = "";
+              if (
+                code.match(/^sequenceDiagram/) ||
+                code.match(/^graph/) ||
+                code.match(/^gantt/)
+              ) {
+                html = '<div class="mermaid">' + code + "</div>";
               }
-          
-              var hl = Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup)
-              return html + '<pre v-pre data-lang="' + lang + '"><code class="lang-' + lang + '">' + hl + '</code></pre>'
+
+              var hl = Prism.highlight(
+                code,
+                Prism.languages[lang] || Prism.languages.markup
+              );
+              return (
+                html +
+                '<pre v-pre data-lang="' +
+                lang +
+                '"><code class="lang-' +
+                lang +
+                '">' +
+                hl +
+                "</code></pre>"
+              );
             }
           }
         }
-      }
+      };
       if (typeof navigator.serviceWorker !== "undefined") {
         navigator.serviceWorker.register("sw.js");
       }
     </script>
     <script src="//unpkg.com/vue/dist/vue.min.js"></script>
     <script src="//unpkg.com/vuep/dist/vuep.min.js"></script>
-    
+
     <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
     <script src="//unpkg.com/prismjs/components/prism-php.min.js"></script>
 
