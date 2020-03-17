@@ -1,3 +1,17 @@
 * [简介](/)
-* 数据结构
-  * [demo](tools/Demo)
+* 网络技术
+  * [网络模型](network/netmodel)
+  * [HTTP](network/http)
+  * [HTTP2](network/http2)
+  * [HTTPS](network/https)
+  * [TCP协议](network/tcp)
+  * [UDP协议](network/udp)
+* java基础
+* 中间件
+  * Kafka
+    * [初识kafka]()
+  * Redis
+    * [redis-skipList](middleware/redis/redis-skiplist)
+  * MQ
+  * ElasticSearch
+  * ELK

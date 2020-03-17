@@ -1,51 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>学习笔记jjlu521016</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
-  <link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css">
-</head>
-<body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      name: 'jasonLu的博客',
-      repo: 'http://www.jjlu521016',
-      loadNavbar: true,
-      loadSidebar: true,
-      coverpage: true,
-      subMaxLevel:3,
-      auto2top: true,
-      autoHeader: true
-      // themeColor: '#3F51B5'
-    }
-    if (typeof navigator.serviceWorker !== 'undefined') {
-      navigator.serviceWorker.register('sw.js')
-    }
-  </script>
-<script src="//unpkg.com/vue/dist/vue.min.js"></script>
-<script src="//unpkg.com/vuep/dist/vuep.min.js"></script>
-<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
-<script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
-<script src="//unpkg.com/prismjs/components/prism-php.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>学习笔记jjlu521016</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
+    <link rel="stylesheet" href="//unpkg.com/vuep/dist/vuep.css" />
+    <link rel="stylesheet" href="//unpkg.com/gitalk/dist/gitalk.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
+    <link href="https://cdn.bootcss.com/KaTeX/0.10.0/katex.min.css" rel="stylesheet">
+    
 
-<script src="//unpkg.com/prismjs/components/prism-asciidoc.min.js"></script>
-<script src="//unpkg.com/prismjs/components/prism-dart.min.js"></script>
-<script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
 
-<script src="//unpkg.com/prismjs/components/prism-javascript.min.js"></script>
-<script src="//unpkg.com/prismjs/components/prism-json.min.js"></script>
-<script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
+    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+    <!-- <script src="//unpkg.com/docsify@4/lib/docsify.min.js"></script> -->
+    <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script src="https://cdn.bootcss.com/KaTeX/0.10.0/katex.min.js"></script>
+    <!-- markmap is based on d3, so must load those files first. -->
+    <script src="//unpkg.com/d3@3/d3.min.js"></script> 
+    <script src="//unpkg.com/markmap@0.6.0/lib/d3-flextree.js"></script> 
+    <script src="//unpkg.com/markmap@0.6.0/lib/view.mindmap.js"></script> 
+    <script>
+      window.$docsify = {
+        name: "jasonLu的博客",
+        repo: "https://jjlu521016.github.io/learningNote/#/",
+        loadNavbar: true,
+        loadSidebar: true,
+        coverpage: true,
+        subMaxLevel: 3,
+        auto2top: true,
+        autoHeader: true,
+        mergeNavbar: true,
+        search: "auto",
+        formatUpdated: '{YYYY}-{MM}-{DD} {HH}:{mm}',
+        plantuml: {
+          skin: 'default',
+        },
+        mindmap: {
+          preset: 'colorful', // or default
+          linkShape: 'diagonal' // or bracket
+        },
+        
+        plugins: [
+          function(hook, vm) {
+            hook.ready(function () {
+              mermaid.initialize({startOnLoad: false});
+            });
+            hook.doneEach(function () {
+              mermaid.init(undefined,'.mermaid');
+            });
+          }
+        ],
+        markdown: {
+          renderer: {
+            code: function(code, lang) {
+              if (lang === "tex") {
+                  return (
+                  '<span class="tex">'+ katex.renderToString(code, {
+                      throwOnError: false
+                  })+'</span>'
+                  );
+              }
 
+              var html = '';
+              if(code.match(/^sequenceDiagram/) || code.match(/^graph/) || code.match(/^gantt/)){
+                html = '<div class="mermaid">' + code + '</div>';
+              }
+          
+              var hl = Prism.highlight(code, Prism.languages[lang] || Prism.languages.markup)
+              return html + '<pre v-pre data-lang="' + lang + '"><code class="lang-' + lang + '">' + hl + '</code></pre>'
+            }
+          }
+        }
+      }
+      if (typeof navigator.serviceWorker !== "undefined") {
+        navigator.serviceWorker.register("sw.js");
+      }
+    </script>
+    <script src="//unpkg.com/vue/dist/vue.min.js"></script>
+    <script src="//unpkg.com/vuep/dist/vuep.min.js"></script>
+    
+    <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-php.min.js"></script>
 
+    <script src="//unpkg.com/prismjs/components/prism-asciidoc.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-dart.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
 
+    <script src="//unpkg.com/prismjs/components/prism-javascript.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-json.min.js"></script>
+    <script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
 
-  <!-- emoji start-->
-  <script src="//unpkg.com/docsify/lib/plugins/emoji.min.js"></script>
+    <!-- emoji start-->
+    <script src="//unpkg.com/docsify/lib/plugins/emoji.min.js"></script>
     <!-- emoji end-->
-</body>
+    <script src="//unpkg.com/docsify/lib/plugins/zoom-image.js"></script>
+    <script src="//unpkg.com/docsify-copy-code"></script>
+    <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+    <script src="//unpkg.com/docsify/lib/plugins/gitalk.min.js"></script>
+    <script src="//unpkg.com/docsify-mindmap/dist/docsify-mindmap.min.js"></script>
+    <script src="//unpkg.com/docsify-plantuml/dist/docsify-plantuml.min.js"></script>
+    <!-- <script src="//unpkg.com/gitalk/dist/gitalk.min.js"></script> -->
+    <!-- <script>
+    const gitalk = new Gitalk({
+      clientID: '7a2a35e7d2d304bd49a5',
+      clientSecret: 'eeb34cd810b4d41e2376d511082dc4f3fa9c79c0',
+      repo: 'https://github.com/jjlu521016/learningNote.git',
+      owner: 'jjlu',
+      admin: ['jjlu521016'],
+      // facebook-like distraction free mode
+      distractionFreeMode: false
+    })
+  </script> -->
+  </body>
 </html>

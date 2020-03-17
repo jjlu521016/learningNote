@@ -1,0 +1,1 @@
+HTTPS 即 HTTP over TLS，是一种在加密信道进行 HTTP 内容传输的协议
