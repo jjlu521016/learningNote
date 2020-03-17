@@ -275,7 +275,6 @@ int zslDelete(zskiplist *zsl, double score, sds ele, zskiplistNode **node) {
     }
     return 0; /* not found */
 }
-
 /* Internal function used by zslDelete, zslDeleteByScore and zslDeleteByRank */
 //从skiplist逻辑上删除一个节点（不释放内存，仅改变节点位置关系）
 //x为要删除的节点
