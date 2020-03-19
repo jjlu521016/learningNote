@@ -12,6 +12,7 @@
     * [初识kafka]()
   * Redis
     * [redis-skipList](middleware/redis/redis-skiplist)
+    * [redis热点key](middile/../middleware/redis/redis-hotkey.md)
   * MQ
   * ElasticSearch
   * ELK
