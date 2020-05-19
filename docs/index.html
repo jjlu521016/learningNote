@@ -52,7 +52,14 @@
           preset: "colorful", // or default
           linkShape: "diagonal" // or bracket
         },
-
+        run: {
+              jsLabs: ['https://unpkg.com/element-ui/lib/index.js'],
+              cssLabs: ['https://unpkg.com/element-ui/lib/theme-chalk/index.css'],
+              themeColor: 'green',
+              themeBorderColor: '#eee',
+              open: false,
+              isHideHeader: true
+        },
         plugins: [
           function(hook, vm) {
             hook.ready(function() {
@@ -109,7 +116,10 @@
     </script>
     <script src="//unpkg.com/vue/dist/vue.min.js"></script>
     <script src="//unpkg.com/vuep/dist/vuep.min.js"></script>
-
+    <!-- 引入 vue-run-sfc 在线编辑代码-->
+    <script src="//unpkg.com/vue-run-sfc"></script>
+    <!-- 引入 docsify-plugin-run -->
+    <script src="//unpkg.com/docsify-plugin-run/src/index.js"></script>
     <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
     <script src="//unpkg.com/prismjs/components/prism-php.min.js"></script>
 
