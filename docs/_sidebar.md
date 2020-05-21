@@ -8,8 +8,7 @@
   * [UDP协议](network/udp)
 * java基础
 * 源码相关
-  * spring
-    * [项目介绍](originSource/spring/overview)
+  * [spring](originSource/spring)
 * 中间件
   * Kafka
     * [初识kafka]()

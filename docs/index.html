@@ -43,7 +43,12 @@
         auto2top: true,
         autoHeader: true,
         mergeNavbar: true,
-        search: "auto",
+        search: {
+          paths: 'auto',
+          placeholder: '搜索',
+          noData: '找不到结果!',
+          depth: 6
+       },
         formatUpdated: "{YYYY}-{MM}-{DD} {HH}:{mm}",
         plantuml: {
           skin: "default"
